@@ -47,11 +47,11 @@ async function callGeminiGenerateContent(model, prompt) {
 }
 
 async function getRecommendations(userGoal, yogasanaIds) {
-    try {
-        if (!API_KEY) {
-            console.warn("Missing REACT_APP_GEMINI_API_KEY; returning empty recommendations.");
-            return [];
-        }
+    if (!API_KEY) {
+        throw new Error(
+            "Missing REACT_APP_GEMINI_API_KEY. Add it to a .env file and restart the dev server."
+        );
+    }
 
         const prompt = `Based on the user's goal: "${userGoal}", recommend 5–6 suitable yogasanas ONLY from the following list of IDs: ${yogasanaIds.join(
             ", "
@@ -67,12 +67,8 @@ async function getRecommendations(userGoal, yogasanaIds) {
             text = await callGeminiGenerateContent("gemini-pro", prompt);
         }
 
-        const recommendations = extractAllowedItems(text, yogasanaIds);
-        return recommendations;
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
+    const recommendations = extractAllowedItems(text, yogasanaIds);
+    return recommendations;
 }
 
 export { getRecommendations };

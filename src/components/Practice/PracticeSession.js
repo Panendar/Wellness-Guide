@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { loadRoutine } from "../../services/storageService";
 import { getYogasanaById } from "../../services/yogasanaService";
+import Timer from "./Timer";
 
 function PracticeSession() {
   const [routine, setRoutine] = useState(null);
@@ -65,11 +66,8 @@ function PracticeSession() {
         ))}
       </ol>
 
-      {/* Duration */}
-      <p>Hold for {currentItem.durationSeconds} seconds</p>
-
-      {/* Next button */}
-      <button onClick={handleNext}>Next</button>
+      {/* Timer component */}
+      <Timer durationSeconds={currentItem.durationSeconds} onComplete={handleNext} />
     </div>
   );
 }

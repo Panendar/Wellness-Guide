@@ -24,7 +24,7 @@ function GoalInput({ onRecommendations }) {
             onRecommendations(recommendedIds);
         } catch (err) {
             console.error(err);
-            setError("Could not get recommendations. Please try again.");
+            setError(err?.message || "Could not get recommendations. Please try again.");
             onRecommendations([]);
         } finally {
             setIsLoading(false);

@@ -9,6 +9,11 @@ function Timer({ durationSeconds, onComplete }) {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   }
 
+  // Reset timer when durationSeconds changes (new pose)
+  useEffect(() => {
+    setTimeRemaining(durationSeconds);
+  }, [durationSeconds]);
+
   // Countdown effect
   useEffect(() => {
     if (timeRemaining <= 0) return;

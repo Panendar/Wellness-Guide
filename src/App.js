@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import { getAllYogasanas } from "./services/yogasanaService";
 import ModeSelector from "./components/shared/ModeSelector";
 import PracticeSession from "./components/Practice/PracticeSession";
