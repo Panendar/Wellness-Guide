@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { loadRoutine } from "../../services/storageService";
 import { getYogasanaById } from "../../services/yogasanaService";
+import achievementTrigger from "../../services/achievementTriggerService";
 import Timer from "./Timer";
 
 function PracticeSession() {
@@ -37,6 +38,16 @@ function PracticeSession() {
   function handleNext() {
     if (currentIndex + 1 >= routine.selectedYogasanas.length) {
       setIsComplete(true);
+      
+      // Trigger achievement check after completing practice session
+      const totalDuration = routine.selectedYogasanas.reduce(
+        (sum, item) => sum + (item.durationSeconds || 0),
+        0
+      );
+      achievementTrigger.afterPracticeSession({
+        yogasanas: routine.selectedYogasanas,
+        duration: Math.floor(totalDuration / 60),
+      });
     } else {
       setCurrentIndex(currentIndex + 1);
     }
