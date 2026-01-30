@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean, ForeignKey, Text, Float
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean, ForeignKey, Text, Float, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from datetime import datetime
@@ -37,6 +37,11 @@ class User(Base):
     # Relationships
     routines = relationship("Routine", back_populates="owner", cascade="all, delete-orphan")
     progress = relationship("Progress", back_populates="user", cascade="all, delete-orphan")
+    favorites = relationship("Favorite", back_populates="user", cascade="all, delete-orphan")
+    session_logs = relationship("SessionLog", back_populates="user", cascade="all, delete-orphan")
+    user_achievements = relationship("UserAchievement", back_populates="user", cascade="all, delete-orphan")
+    user_settings = relationship("UserSettings", back_populates="user", uselist=False, cascade="all, delete-orphan")
+    challenge_completions = relationship("ChallengeCompletion", back_populates="user", cascade="all, delete-orphan")
 
 
 class Routine(Base):
