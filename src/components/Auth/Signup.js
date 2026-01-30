@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as API from "../services/apiService";
+import * as API from "../../services/apiService";
 import "./Auth.css";
 
 /**
