@@ -1000,3 +1000,76 @@ export async function getChallengeLeaderboard(limit = 10) {
 
   return response.json();
 }
+
+// ============================================================================
+// DEFAULT EXPORT - All API functions as an object
+// ============================================================================
+
+const API = {
+  // Authentication
+  signup,
+  login,
+  logout,
+  isAuthenticated,
+  getStoredUser,
+  
+  // User Profile
+  getProfile,
+  
+  // Routines
+  createRoutine,
+  getRoutines,
+  getRoutine,
+  updateRoutine,
+  deleteRoutine,
+  activateRoutine,
+  
+  // Progress
+  logProgress,
+  getProgressHistory,
+  getProgressStats,
+  updateProgress,
+  deleteProgress,
+  
+  // Session Logging
+  logSession,
+  getSessionLogs,
+  getSessionStats,
+  
+  // Yogasanas
+  getAllYogasanas,
+  searchYogasanas,
+  filterYogasanas,
+  getYogasanasByDifficulty,
+  getYogasanaProgress,
+  getRoutineProgress,
+  
+  // Favorites
+  addFavorite,
+  removeFavorite,
+  getFavorites,
+  checkFavorite,
+  
+  // User Stats
+  getUserStats,
+  
+  // Achievements
+  getAchievements,
+  getUserAchievements,
+  checkNewAchievements,
+  getAchievementProgress,
+  
+  // Settings
+  getUserSettings,
+  updateSettings,
+  resetSettings,
+  
+  // Daily Challenges
+  getDailyChallenge,
+  completeDailyChallenge,
+  getUserChallengeProgress,
+  getChallengeHistory,
+  getChallengeLeaderboard,
+};
+
+export default API;
